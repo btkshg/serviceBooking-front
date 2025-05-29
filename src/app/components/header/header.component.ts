@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'compHeader',
@@ -8,4 +10,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+    constructor(private router: Router) {}
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
 }

@@ -1,6 +1,8 @@
  <div class="flex width-full bg-black justify-around text-white h-20 p-4 items-center">
-    <div class="font-extrabold text-orange-600 hover:cursor-pointer copy">Ben's <span class="italic text-white">Garage</span></div>
-    <div class="buttons flex gap-8">
+    <div (click)="goHome()">
+        <div class="font-extrabold text-orange-600 hover:cursor-pointer copy">Ben's <span class="italic text-white">Garage</span></div>
+    </div>
+        <div class="buttons flex gap-8">
         <button class="px-4 py-1 font-bold  text-orange-600 rounded-full">Add service</button>
         <button class="underline">Sign in</button>
     </div>
