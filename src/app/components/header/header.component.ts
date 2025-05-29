@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -14,5 +14,13 @@ export class HeaderComponent {
 
   goHome() {
     this.router.navigate(['/']);
+  }
+
+  goAddService() {
+    this.router.navigate(['/addservice'])
+  }
+
+  goRegisterLogin() {
+    this.router.navigate(['/registerlogin'])
   }
 }
