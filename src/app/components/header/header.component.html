@@ -1,0 +1,21 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sonsie+One&display=swap');
+
+  .logo {
+    font-family: 'Sonsie One', sans-serif;
+  }
+
+</style>
+
+<div class="flex width-full bg-black justify-around text-white h-20 p-4 items-center sticky top-0 z-50">
+  <div (click)="goHome()" class="text-xl font-black logo">
+    <div class=" text-orange-600 hover:cursor-pointer copy">Ben's <span class=" text-white">Garage</span>
+    </div>
+  </div>
+  <div class="buttons flex gap-8">
+    <button class="hover:underline text-orange-600 font-semibold hover:cursor-pointer">Add service</button>
+    <button class="px-5 py-1 font-semibold text-white bg-orange-600 hover:text-orange-600
+        hover:bg-white transition-all duration-200 rounded-full hover:cursor-pointer">Sign
+      in</button>
+  </div>
+</div>
