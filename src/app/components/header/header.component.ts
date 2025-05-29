@@ -19,4 +19,8 @@ export class HeaderComponent {
   goAddService() {
     this.router.navigate(['/addservice'])
   }
+
+  goRegisterLogin() {
+    this.router.navigate(['/registerlogin'])
+  }
 }
