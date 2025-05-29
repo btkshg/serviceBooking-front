@@ -2,8 +2,10 @@
     <div (click)="goHome()">
         <div class="font-extrabold text-orange-600 hover:cursor-pointer copy">Ben's <span class="italic text-white">Garage</span></div>
     </div>
-        <div class="buttons flex gap-8">
-        <button class="px-4 py-1 font-bold  text-orange-600 rounded-full">Add service</button>
+    <div class="buttons flex gap-8">
+        <div (click)="goAddService()">
+            <button class="px-4 py-1 font-bold  text-orange-600 rounded-full hover:cursor-pointer copy">Add service</button>
+        </div>
         <button class="underline">Sign in</button>
     </div>
  </div>

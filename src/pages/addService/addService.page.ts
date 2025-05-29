@@ -4,9 +4,9 @@ import { FooterComponent } from '../../app/components/footer/footer.component';
 
 
 @Component({
-    selector: 'service-page',
-    templateUrl: './service.page.html',
+    selector: 'addService-page',
+    templateUrl: './addService.page.html',
     imports: []
 })
-export class servicePage {
+export class addServicePage {
 }
