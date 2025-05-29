@@ -20,7 +20,7 @@
 <main class="main w-screen m-0 p-0 overflow-hidden top-0">
   <div class="content min-w-screen m-0 p-0">
     <div class="flex flex-col justify-center items-center bg-black -mt-20 pb-20" style="border-radius: 60px;">
-      <div class="flex justify-center items-center text-center text-white h-11/12 w-3/5 pt-32">
+      <div class="flex justify-center items-center text-center text-white h-11/12 w-3/5 pt-28">
         <h1 class="text-white font-extrabold text-5xl w-1/2 -mr-10 text-left">Auto maintenance and repair service from
           your
           trusty local
@@ -43,11 +43,8 @@
       </div>
     </div>
     <div class="cards w-full flex justify-center -mt-12">
-      <div class="grid grid-cols-4 w-2/3">
-        <app-service-card 
-          *ngFor="let card of cards" 
-          [card]="card" 
-          (cardClick)="goToPage()">
+      <div class="grid grid-cols-4 w-2/3 mb-10">
+        <app-service-card *ngFor="let card of cards" [card]="card" (cardClick)="goToPage()">
         </app-service-card>
       </div>
     </div>
