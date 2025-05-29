@@ -1,7 +1,52 @@
+<style>
+  @layer utilities {
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
 
+      100% {
+        transform: translateX(-50%);
+      }
+    }
 
-<main class="main">
+    .animate-scroll {
+      animation: scroll linear infinite;
+    }
+  }
 
-      <h1 class="text-fuchsia-700 text-[84px]">peeepeepopoo</h1>
-      
+</style>
+
+<main class="main w-screen m-0 p-0 overflow-hidden top-0">
+  <div class="content min-w-screen m-0 p-0">
+    <div class="flex flex-col justify-center items-center bg-black -mt-20 pb-20" style="border-radius: 60px;">
+      <div class="flex justify-center items-center text-center text-white h-11/12 w-3/5 pt-32">
+        <h1 class="text-white font-extrabold text-5xl w-1/2 -mr-10 text-left">Auto maintenance and repair service from
+          your
+          trusty local
+        </h1>
+        <img draggable="false"
+          src="https://file.aiquickdraw.com/imgcompressed/img/compressed_f7e7d187e98a983bf686bdea282d7959.webp"
+          alt="carimg" class="w-1/2 -ml-20 mt-10 hover:scale-105 transition-all duration-300 h-60 object-cover">
+      </div>
+      <div class="w-full overflow-hidden relative">
+        <div class="flex space-x-6 animate-scroll whitespace-nowrap" [style.animation-duration]="'30s'">
+          <ng-container *ngFor="let review of repeatedReviews">
+            <div class="text-white p-6 rounded-xl shadow-md min-w-[250px] max-w-xs flex-shrink-0">
+              <p class="text-sm font-thin">{{ review.name }}: <span
+                  class="text-sm italic font-thin">"{{ review.text }}"</span>
+                <span class="text-yellow-500 ml-2">★ {{ review.rating }}</span>
+              </p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="cards w-full flex justify-center -mt-12">
+      <div class="grid grid-cols-4 w-2/3">
+        <app-service-card *ngFor="let card of cards" [card]="card" (click)="goToPage()">
+        </app-service-card>
+      </div>
+    </div>
+  </div>
 </main>
