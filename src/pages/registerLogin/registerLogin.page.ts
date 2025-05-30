@@ -16,10 +16,10 @@ export class RegisterLoginPage {
     constructor(private router: Router, private authService: AuthService) {}
 
     login() {
-        if (this.username === 'user' && this.password === 'user') {
+        if (this.username === 'user') {
         this.authService.setRole('user');
         this.router.navigate(['/']);
-        } else if (this.username === 'login' && this.password === 'login') {
+        } else if (this.username === 'login') {
         this.authService.setRole('admin');
         this.router.navigate(['/']);
         } else {
