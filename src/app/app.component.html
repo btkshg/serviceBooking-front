@@ -1,3 +1,9 @@
-<compHeader></compHeader>
-<router-outlet />
-<compFooter></compFooter>
+<div class="flex flex-col min-h-screen">
+  <compHeader></compHeader>
+
+  <main class="flex-grow">
+    <router-outlet></router-outlet>
+  </main>
+
+  <compFooter></compFooter>
+</div>

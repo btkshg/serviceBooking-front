@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, model} from '@angular/core';
 import { MatCardModule} from '@angular/material/card';
 import { provideNativeDateAdapter} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'service-page',
@@ -38,7 +38,13 @@ export class servicePage {
         this.selectedTime = this.selectedTime === time ? null : time;
     }
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          window.scrollTo(0, 0);
+        }
+      });
+    }
 
     confirm() {
       this.router.navigate(['/booking']);
