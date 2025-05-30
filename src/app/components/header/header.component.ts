@@ -23,4 +23,8 @@ export class HeaderComponent {
   goRegisterLogin() {
     this.router.navigate(['/login'])
   }
+
+  goProfile() {
+    this.router.navigate(['/profile'])
+  }
 }

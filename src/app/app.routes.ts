@@ -7,4 +7,5 @@ export const routes: Routes = [
     { path: 'booking', loadComponent: () => import('../pages/booking/booking.page').then(module => module.bookingPage) },
     { path: 'add', loadComponent: () => import('../pages/addService/addService.page').then(module => module.addServicePage) },
     { path: 'login', loadComponent: () => import('../pages/registerLogin/registerLogin.page').then(module => module.RegisterLoginPage) },
+    { path: 'profile', loadComponent: () => import('../pages/profile/profile.page').then(module => module.profilePage) },
 ];
