@@ -17,10 +17,10 @@ export class HeaderComponent {
   }
 
   goAddService() {
-    this.router.navigate(['/addservice'])
+    this.router.navigate(['/add'])
   }
 
   goRegisterLogin() {
-    this.router.navigate(['/registerlogin'])
+    this.router.navigate(['/login'])
   }
 }
