@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../app/components/header/header.component';
-import { FooterComponent } from '../../app/components/footer/footer.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +15,7 @@ import { Router, NavigationEnd } from '@angular/router';
     templateUrl: './service.page.html',
     standalone: true,
     providers: [provideNativeDateAdapter()],
-    imports: [CommonModule, HeaderComponent, FooterComponent, FormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatCardModule, MatDatepickerModule],
+    imports: [CommonModule, FormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatCardModule, MatDatepickerModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class servicePage {

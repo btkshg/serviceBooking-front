@@ -8,17 +8,31 @@
 </style>
 
 <div class="flex width-full bg-black justify-around text-white h-20 p-4 items-center sticky top-0 z-50">
+  <!-- logo -->
   <div (click)="goHome()" class="text-xl font-black logo">
     <div class=" text-orange-600 hover:cursor-pointer copy">Ben's <span class=" text-white">Garage</span>
     </div>
   </div>
+
+  <!-- buttons -->
   <div class="buttons flex gap-8">
-    <button (click)="goAddService()" class="hover:underline text-orange-600 font-semibold hover:cursor-pointer">Add
+    <button *ngIf="role === 'admin'" (click)="goAddService()" class="hover:underline text-orange-600 font-semibold hover:cursor-pointer">Add
       service</button>
-    <button (click)="goProfile()"
+
+    <button *ngIf="role === 'user'" (click)="goProfile()"
       class="hover:underline text-orange-600 font-semibold hover:cursor-pointer">Benji</button>
-    <button (click)="goRegisterLogin()" class="px-5 py-1 font-semibold text-white bg-orange-600 hover:text-orange-600
+
+    <button *ngIf="role === 'guest'" (click)="goRegisterLogin()" class="px-5 py-1 font-semibold text-white bg-orange-600 hover:text-orange-600
         hover:bg-white transition-all duration-200 rounded-full hover:cursor-pointer">Sign
       in</button>
+
+    <button *ngIf="role === 'user'" (click)="logout()" class="font-semibold text-orange-400 hover:underline hover:cursor-pointer">Logout</button>
+    
+    <button
+      *ngIf="role === 'admin'"
+      (click)="logout()"
+      class="px-4 py-1 text-white bg-red-600 hover:bg-white hover:text-red-600 font-semibold rounded-full transition-all">
+      Log out
+    </button>
   </div>
 </div>
