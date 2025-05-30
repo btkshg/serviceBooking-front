@@ -1,18 +1,25 @@
-<div class="max-w-md mx-auto mb-6 p-6 bg-white rounded-lg">
+<div class="max-w-md mx-auto my-6 p-6 bg-white rounded-lg">
   <h2 class="text-3xl text-gray-800 font-black mb-12 text-center">Add / Edit Service</h2>
   <form class="flex flex-col space-y-4">
-    <input type="text" placeholder="Name"
-      class="p-2 border border-gray-500 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 .placeholder-gray-500" />
-    <input type="number" placeholder="Price (€)" class="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500
-    border-gray-500 placeholder-gray-400" />
-    <input type="number" placeholder="Duration (min)" class="p-2 border border-gray-500 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2
-      focus:ring-orange-500" />
-    <textarea placeholder="Description" rows="3" class="p-2 border border-gray-500 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2
-      focus:ring-orange-500"></textarea>
+    <input type="text" [(ngModel)]="service.name" name="name" placeholder="Name"
+      class="p-2 border border-gray-500 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
 
-    <button type="submit"
+    <input type="number" [(ngModel)]="service.price" name="price" placeholder="Price (€)"
+      class="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 border-gray-500 placeholder-gray-400" />
+
+    <input type="number" [(ngModel)]="service.duration" name="duration" placeholder="Duration (min)"
+      class="p-2 border border-gray-500 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
+
+    <textarea [(ngModel)]="service.description" name="description" placeholder="Description" rows="3"
+      class="p-2 border border-gray-500 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+
+    <input type="text" [(ngModel)]="service.picUrl" name="picUrl" placeholder="Picture URL"
+      class="p-2 border border-gray-500 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" />
+
+    <button type="submit" (click)="saveService()"
       class="mt-4 font-bold bg-orange-600 text-white py-2 rounded-md hover:bg-orange-700 transition">
       Save/Update
     </button>
   </form>
+
 </div>

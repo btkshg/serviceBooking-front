@@ -1,35 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; // <-- add this
 import { CommonModule } from '@angular/common';
 import { ServiceCardComponent } from '../../app/components/service-card/service-card.component';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'home-page',
   templateUrl: './home.page.html',
-  standalone: true,              
+  standalone: true,
   imports: [CommonModule, ServiceCardComponent],
 })
-export class HomePage {
-    reviews = [
-      { name: 'Bata', text: 'Nice garage!', rating: 4.9 },
-      { name: 'Dan', text: 'Friendly staff.', rating: 4.5 },
-      { name: 'Phithak', text: 'Will come again!', rating: 4.8 },
-      { name: 'Bence', text: "I'm the best", rating: 5 },
-      { name: 'Aki', text: 'Great service!', rating: 4.7 },
-    ];
-  
-    repeatedReviews = [...this.reviews, ...this.reviews];
+export class HomePage implements OnInit {
+  cards: any[] = [];
 
-    cards = [
-        { title: 'Car Wash', description: 'Get your car washed with our premium service.', image: '', duration: 30, price: 20 },
-        { title: 'Oil Change', description: 'Keep your engine running smoothly with our oil change service.', image: '', duration: 30, price: 20 },
-        { title: 'Tire Rotation', description: 'Extend the life of your tires with our tire rotation service.', image: '', duration: 30, price: 20 },
-        { title: 'Brake Inspection', description: 'Ensure your brakes are in top condition with our inspection service.', image: '', duration: 30, price: 20 },
-        { title: 'Battery Check', description: 'Keep your battery healthy with our battery check service.', image: '', duration: 30, price: 20 },
-    ];
+  reviews = [
+    { name: 'Bata', text: 'Nice garage!', rating: 4.9 },
+    { name: 'Dan', text: 'Friendly staff.', rating: 4.5 },
+    { name: 'Phithak', text: 'Will come again!', rating: 4.8 },
+    { name: 'Bence', text: "I'm the best", rating: 5 },
+    { name: 'Aki', text: 'Great service!', rating: 4.7 },
+  ];
+  repeatedReviews = [...this.reviews, ...this.reviews];
 
-    constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
+
+  ngOnInit() {
+    this.http.get<any[]>('http://localhost:3000/services').subscribe((data) => {
+      this.cards = data;
+    });
+    console.log('HomePage initialized');
+  }
 
   goToPage() {
     this.router.navigate(['/service']);

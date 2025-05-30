@@ -7,9 +7,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ServiceCardComponent {
   @Input() card!: {
-    title: string;
+    id: number;
+    name: string;
     description: string;
-    image?: string;
+    picUrl?: string;
     duration: number;
     price: number;
   };
