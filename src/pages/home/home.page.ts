@@ -34,4 +34,8 @@ export class HomePage implements OnInit {
   goToPage() {
     this.router.navigate(['/service']);
   }
+
+  editService(id: number) {
+    this.router.navigate(['/add', id]);
+  }
 }
