@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
   goToPage(id: number) {
     const role = localStorage.getItem('currentUser');
     console.log('Navigating to service with id:', id, role);
-    localStorage.getItem('role') === 'admin'
+    localStorage.getItem('currentUser') === 'admin'
       ? this.router.navigate(['/add', id]) 
       : this.router.navigate(['/service']);
   }
