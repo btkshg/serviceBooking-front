@@ -57,8 +57,10 @@ export class RegisterLoginPage {
         this.http.post('http://localhost:3000/auth/login', loginData).subscribe({
             next: (res: any) => {
                 console.log('Login Successful:', res);
-                this.authService.setRole(res.role);
-                this.authService.setName(res.name);
+                this.authService.setRole(res.user.role);
+                this.authService.setName(res.user.name);
+                this.authService.setEmail(res.user.email);
+                localStorage.setItem('token', res.access_token);
                 this.snackBar.open('Login successful!', 'Close', {
                     duration: 3000,
                     panelClass: ['bg-red-600', 'text-white'],
