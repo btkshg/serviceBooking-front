@@ -9,6 +9,8 @@ import { MatCardModule} from '@angular/material/card';
 import { provideNativeDateAdapter} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'service-page',
@@ -21,8 +23,11 @@ import { Router, NavigationEnd } from '@angular/router';
 export class servicePage {
     timeSlots: string[] = [];
     selectedTime: string | null = null;
-    selected: Date | null = null;
+    selected: Date = new Date();
     minDate: Date = new Date(); 
+    id: null | number = null;
+    name: null | string = null; 
+    duration: null | string = null;
 
     ngOnInit() {
       const startHour = 10;
@@ -30,13 +35,18 @@ export class servicePage {
       for (let hour = startHour; hour < endHour; hour++) {
         this.timeSlots.push(`${hour}:00`, `${hour}:30`);
       }
+      this.route.queryParams.subscribe(params => {
+        this.id = params['id'];
+        this.name = params['name'];
+        this.duration = params['dur'];
+      });
     }
 
     selectTime(time: string) {
         this.selectedTime = this.selectedTime === time ? null : time;
     }
 
-    constructor(private router: Router) {
+    constructor(private route: ActivatedRoute ,private router: Router, private MatSnackBar: MatSnackBar) {
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           window.scrollTo(0, 0);
@@ -45,7 +55,20 @@ export class servicePage {
     }
 
     confirm() {
-      this.router.navigate(['/booking']);
+      const role = localStorage.getItem('currentUser');
+      console.log(role);
+      if(localStorage.getItem('currentUser') === null) {
+        this.MatSnackBar.open('Please log in to book a service.', 'Close', {
+          duration: 3000,});
+        return;
+      }
+      if (this.selectedTime === null) {
+        this.MatSnackBar.open('Please select a time and date.', 'Close', {
+          duration: 3000,
+        });
+        return;
+      }
+      this.router.navigate(['/booking'], {queryParams: {name: this.name, dur: this.duration, date: this.selected, time: this.selectedTime}});
     }
 }
 

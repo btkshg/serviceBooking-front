@@ -33,11 +33,11 @@ export class HomePage implements OnInit {
     console.log('HomePage initialized');
   }
 
-  goToPage(id: number) {
+  goToPage(card: any) {
     const role = localStorage.getItem('currentUser');
-    console.log('Navigating to service with id:', id, role);
+    console.log('Navigating to service with id:', card.id, role);
     localStorage.getItem('currentUser') === 'admin'
-      ? this.router.navigate(['/add', id]) 
-      : this.router.navigate(['/service']);
+      ? this.router.navigate(['/add', card.id]) 
+      : this.router.navigate(['/service'], { queryParams: {id: card.id, name: card.name, dur: card.duration }});
   }
 }
