@@ -44,8 +44,7 @@
     </div>
     <div class="cards w-full flex justify-center -mt-12">
       <div class="grid grid-cols-4 w-2/3 mb-10">
-        <app-service-card *ngFor="let card of cards" [card]="card" (cardClick)="goToPage()"
-          (imgClick)="editService($event)">
+        <app-service-card *ngFor="let card of cards" [card]="card" (cardClick)="goToPage($event)">
         </app-service-card>
       </div>
     </div>

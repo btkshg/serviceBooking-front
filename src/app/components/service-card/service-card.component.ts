@@ -15,15 +15,10 @@ export class ServiceCardComponent {
     price: number;
   };
 
-  @Output() cardClick = new EventEmitter<void>();
-  @Output() imgClick = new EventEmitter<number>();
+  @Output() cardClick = new EventEmitter<number>();
 
 
   emitClick() {
-    this.cardClick.emit();
-  }
-
-  editService() {
-    this.imgClick.emit(this.card.id);
+    this.cardClick.emit(this.card.id);
   }
 }

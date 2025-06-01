@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
   cards: any[] = [];
 
+  user: string = 'guest'; 
+
   reviews = [
     { name: 'Bata', text: 'Nice garage!', rating: 4.9 },
     { name: 'Dan', text: 'Friendly staff.', rating: 4.5 },
@@ -31,11 +33,11 @@ export class HomePage implements OnInit {
     console.log('HomePage initialized');
   }
 
-  goToPage() {
-    this.router.navigate(['/service']);
-  }
-
-  editService(id: number) {
-    this.router.navigate(['/add', id]);
+  goToPage(id: number) {
+    const role = localStorage.getItem('currentUser');
+    console.log('Navigating to service with id:', id, role);
+    localStorage.getItem('role') === 'admin'
+      ? this.router.navigate(['/add', id]) 
+      : this.router.navigate(['/service']);
   }
 }

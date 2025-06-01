@@ -1,12 +1,12 @@
-<div
+<div (click)="emitClick()"
   class="card bg-white shadow-lg rounded-lg m-2 hover:shadow-xl transition-all duration-300 hover:scale-105 relative hover:cursor-pointer">
   <div class="absolute top-2 left-2 text-orange-500 bg-white px-3 py-1 rounded-md text-sm font-bold">
     {{ card.duration }} min
   </div>
-  <img (click)="editService()"
+  <img
     [src]="card.picUrl ? card.picUrl : 'https://images.contentstack.io/v3/assets/blt62d40591b3650da3/bltee515d46b1b13f83/658ee585d082f768b425faf9/hero_PN1305_HowOftenWashCar_Header-1.jpg'"
     alt="{{ card.name }}" class="w-full h-40 object-cover rounded-t-lg">
-  <div class="px-4" (click)="emitClick()">
+  <div class="px-4">
     <h2 class="text-xl font-bold mt-2 mb-3">{{ card.name }}</h2>
     <p class="text-gray-600 font-thin text-sm line-clamp-2 h-10">{{ card.description }}</p>
     <div class="flex justify-between items-center py-4">
