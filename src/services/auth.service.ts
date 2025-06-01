@@ -5,14 +5,36 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private userRoleSubject = new BehaviorSubject<'guest' | 'user' | 'admin'>('guest');
-  userRole$ = this.userRoleSubject.asObservable();
+  private currentRoleSubject = new BehaviorSubject<string>('guest');
+  currentRole$ = this.currentRoleSubject.asObservable();
 
-  getRole(): 'guest' | 'user' | 'admin' {
-    return this.userRoleSubject.value;
+  private currentNameSubject = new BehaviorSubject<string>('');
+  currentName$ = this.currentNameSubject.asObservable();
+
+  constructor() {
+    const role = localStorage.getItem('currentUser');
+    if (role) {
+      this.currentRoleSubject.next(role);
+    }
+
+    const name = localStorage.getItem('currentName');
+    if (name) {
+      this.currentNameSubject.next(name);
+    }
   }
 
-  setRole(role: 'guest' | 'user' | 'admin') {
-    this.userRoleSubject.next(role);
+  setRole(role: string) {
+    localStorage.setItem('currentUser', role);
+    this.currentRoleSubject.next(role);
+  }
+
+  setName(name: string) {
+    localStorage.setItem('currentName', name);
+    this.currentNameSubject.next(name);
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.currentRoleSubject.next('guest');
   }
 }
