@@ -10,16 +10,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
-
-  role: 'guest' | 'user' | 'admin' = 'guest';
+export class HeaderComponent implements OnInit{
 
   constructor(private router: Router, private authService: AuthService) {}
 
+  currentUser: string = 'guest';
+
+  currentName: string = '';
+
   ngOnInit() {
-    this.authService.userRole$.subscribe(role => {
-      this.role = role;
+    this.authService.currentRole$.subscribe(role => {
+      this.currentUser = role;
     });
+    console.log('current user: ', this.currentUser) 
+    
+    this.authService.currentName$.subscribe(name => {
+      this.currentName = name;
+    })
   }
 
   goHome() {
@@ -39,7 +46,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.setRole('guest');
-    this.router.navigate(['/']);
+    this.authService.logout();
+    this.router.navigate(['/'])
   }
+
 }
