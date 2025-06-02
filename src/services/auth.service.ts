@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+// This service is used to manage the authentication state of the user.
 @Injectable({
   providedIn: 'root'
 })

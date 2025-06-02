@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { Router, RouterModule } from '@angular/router';
 
-
+// This comp/page is for adding and editing services.
+// This page is only visible for users with admin role.
 @Component({
     selector: 'addService-page',
     templateUrl: './addService.page.html',
@@ -14,6 +15,7 @@ import { Router, RouterModule } from '@angular/router';
     imports: [FormsModule, MatSnackBarModule, CommonModule, RouterModule],
   })
   
+//Defining default service object with empty values.
 export class addServicePage {
     service: {
         id?: string;
@@ -29,9 +31,11 @@ export class addServicePage {
         description: '',
         picUrl: ''
       };
-      
+    
+  // Checks if the current process is editing or creating a service.
   isEdit = false;
-
+  
+  // Injecting necessary services for HTTP requests, if there is a id in the param, it loads the service data for editing and change isEdit to true.
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => {
       const id = params['id'];
@@ -42,6 +46,7 @@ export class addServicePage {
     });
   }
   
+  // For edit, calls current service datas from the db.
   loadService(id: string) {
     this.http.get(`http://localhost:3000/services/${id}`).subscribe({
       next: (data: any) => {
@@ -57,6 +62,7 @@ export class addServicePage {
     });
   }
 
+  // For creating new service.
   saveService() {
     const { name, price, duration, description } = this.service;
   
@@ -71,6 +77,7 @@ export class addServicePage {
     this.isEdit ? this.updateService() : this.createService();
   }
   
+  // Creating service payload with current fields.
   private createService() {
     const payload = {
       name: this.service.name,
@@ -79,13 +86,14 @@ export class addServicePage {
       duration: +this.service.duration,
       picUrl: this.service.picUrl || ''
     };
-  
+    // Sending post request to the backend to create a new service.
     this.http.post('http://localhost:3000/services', payload).subscribe({
       next: () => this.snackBar.open('Service created.', 'Close', { duration: 3000 }),
       error: () => this.snackBar.open('Failed to create service.', 'Close', { duration: 3000 })
     });
   }
   
+  // For updating a service. Same logics createing
   private updateService() {
     const id = this.service.id;
     if (!id || isNaN(+id)) {
@@ -107,8 +115,7 @@ export class addServicePage {
     });
   }
   
-  
-
+  // For deleting a service.
   deleteService() {
     this.http.delete(`http://localhost:3000/services/${this.service.id}`)
       .subscribe({

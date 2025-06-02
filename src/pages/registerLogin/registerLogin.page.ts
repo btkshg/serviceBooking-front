@@ -5,12 +5,14 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
+// Page for registering and loggin users only.
 @Component({
     selector: 'registerLogin-page',
     templateUrl: './registerLogin.page.html',
     imports: [FormsModule, MatSnackBarModule]
 })
 export class RegisterLoginPage {
+    // Set the input values to empty strings
     name = '';
     email = '';
     password = '';
@@ -19,7 +21,9 @@ export class RegisterLoginPage {
     loginPass = '';
 
     constructor(private http: HttpClient, private router: Router, private authService: AuthService, private snackBar : MatSnackBar) {}
-
+    
+    // When user filled out the registering form and pressed register button, it sends the data to backend to create a new user
+    // If fails snackbar will be shown.
     register() {
         const userData = {
             name: this.name,
@@ -50,6 +54,8 @@ export class RegisterLoginPage {
         });
     }
 
+    // When user filled out the login form and pressed login button, it sends the data to backend to log in the user
+    // If fails snackbar will be shown.
     login() {
         const loginData = {
             name: this.loginName,

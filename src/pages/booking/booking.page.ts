@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
+// This component will be visible if user successfully booked a service.
 @Component({
   selector: 'booking-page',
   templateUrl: './booking.page.html',
@@ -12,10 +13,12 @@ export class bookingPage {
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
+  // Initializing variables to store booking details that will be updated from the query parameters.
   date = '';
   time = '';
   name = '';
 
+  // Setting the values from the query parameters when the component is initialized.
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.name = params['name'];
@@ -25,6 +28,7 @@ export class bookingPage {
     console.log('BookingPage initialized'); 
   }
 
+  // This method is directing user to see their new and previous bookings.
   goToBookings() {
     this.router.navigate(['/profile']);
   }
