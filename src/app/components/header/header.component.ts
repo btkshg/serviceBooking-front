@@ -21,13 +21,12 @@ export class HeaderComponent implements OnInit{
   ngOnInit() {
     this.authService.currentRole$.subscribe(role => {
       this.currentUser = role;
-      console.log('Header: currentUser set to', role);
+      // console.log('currentUser: ', role);
     });
-    // console.log('current user: ', this.currentUser) 
     
     this.authService.currentName$.subscribe(name => {
       this.currentName = name;
-      // console.log('Header: currentName set to', name);
+      // console.log('currentName: ', name);
     });
   }
 
