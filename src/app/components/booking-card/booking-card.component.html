@@ -1,18 +1,16 @@
 <div class="bg-white shadow-md p-4 rounded-md">
   <div class="flex justify-between items-end">
-    <h1 class="font-bold text-gray-800 text-2xl">Carwash</h1>
-    <p class="font-semibold">2023-10-01</p>
+    <h1 class="font-bold text-gray-800 text-2xl">{{ booking.service.name }}</h1>
+    <p class="font-semibold">{{booking.date}} {{booking.time.slice(0, 5)}}</p>
   </div>
   <div class="flex justify-between -mt-1">
-    <h1 class="font-thin">Booking id: #2</h1>
-    <p class="font-semibold">20 eur</p>
+    <h1 class="font-thin">Booking id: {{booking.id}}</h1>
+    <p class="font-semibold">{{booking.service.price}} eur</p>
   </div>
   <div class="flex justify-between mt-4">
-    <h1 class="font-semibold text-gray-700">Status: Waiting</h1>
+    <h1 class="font-semibold text-gray-700">Status: <span class="capitalize">{{booking.status}}</span></h1>
     <div class="flex gap-2">
-      <button class="underline hover:cursor-pointer hover:no-underline">Edit</button>
-      <p>|</p>
-      <button class="underline hover:cursor-pointer hover:no-underline">Delete</button>
+      <button (click)="delete()" class="underline hover:cursor-pointer hover:no-underline">Delete</button>
     </div>
   </div>
 </div>

@@ -11,6 +11,9 @@ export class AuthService {
   private currentNameSubject = new BehaviorSubject<string>('');
   currentName$ = this.currentNameSubject.asObservable();
 
+  private currentIdSubject = new BehaviorSubject<string>('');
+  currentId$ = this.currentIdSubject.asObservable();
+
   private currentEmailSubject = new BehaviorSubject<string>('');
   currentEmail$ = this.currentEmailSubject.asObservable();
 
@@ -29,6 +32,11 @@ export class AuthService {
     if (email) {
       this.currentEmailSubject.next(email);
     }
+
+    const id = localStorage.getItem('id');
+    if (id) {
+      this.currentIdSubject.next(id);
+    }
   }
 
   setRole(role: string) {
@@ -39,6 +47,11 @@ export class AuthService {
   setName(name: string) {
     localStorage.setItem('currentName', name);
     this.currentNameSubject.next(name);
+  }
+
+  setId(id: string) {
+    localStorage.setItem('id', id);
+    this.currentIdSubject.next(id);   
   }
 
   logout() {

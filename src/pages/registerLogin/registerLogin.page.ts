@@ -35,7 +35,9 @@ export class RegisterLoginPage {
                     duration: 3000,
                     panelClass: ['bg-red-600', 'text-white'],
                 });
-                this.router.navigate(['/']);
+                this.email = '';
+                this.name = ''; 
+                this.password = '';
             },
             
             error: (err) => {
@@ -60,6 +62,7 @@ export class RegisterLoginPage {
                 this.authService.setRole(res.user.role);
                 this.authService.setName(res.user.name);
                 this.authService.setEmail(res.user.email);
+                this.authService.setId(res.user.id);
                 localStorage.setItem('token', res.access_token);
                 this.snackBar.open('Login successful!', 'Close', {
                     duration: 3000,

@@ -1,14 +1,16 @@
 <div class="flex justify-center min-h-11/12">
   <div class="w-2/3 m-8 bg-gray-100 flex justify-center gap-8 h-auto">
     <div class="p-6 bg-white rounded-md shadow-md w-2/5 h-fit">
-      <h1 class="text-4xl text-gray-900 font-black"> {{ currentName }} </h1>
+      <h1 class="text-4xl text-gray-900 font-black capitalize"> {{ currentName }} </h1>
       <p class="mb-6 text-md font-light text-gray-600"> {{ currentEmail }} </p>
-      <p class="flex justify-between text-xl text-gray-600"><span>My total orders:</span><span>12</span></p>
+      <p class="flex justify-between text-xl text-gray-600"><span>My total
+          orders:</span><span>{{bookings.length}}</span></p>
     </div>
     <div class="w-3/5 pb-4 px-4 flex flex-col gap-6">
       <h1 class="font-black text-4xl text-gray-800">My previous booking</h1>
-      <app-booking-card></app-booking-card>
-      <p class="text-gray-500 text-md font-thin">No bookings yet.</p>
+      <app-booking-card *ngFor="let booking of bookings" [booking]="booking" (cardClick)="deleteBooking($event)">
+      </app-booking-card>
+      <p *ngIf="bookings.length === 0" class="text-gray-500 text-md font-thin">No bookings yet.</p>
     </div>
   </div>
 </div>

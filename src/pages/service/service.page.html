@@ -42,17 +42,20 @@
     <p class="text-gray-500 text-lg font- mb-4">{{name}} | {{duration}} min</p>
     <div class="flex justify-center mb-10 gap-10">
       <mat-card class="demo-inline-calendar-card w-80 bg-white custom-calendar">
-        <mat-calendar [minDate]="minDate" class=" text-black" [(selected)]="selected"></mat-calendar>
+        <mat-calendar [minDate]="minDate" class="text-black" [(selected)]="selected"
+          (selectedChange)="onDateChange($event)">
+        </mat-calendar>
       </mat-card>
       <div>
         <div class="grid grid-cols-4 h-60 gap-4">
-          <button *ngFor="let time of timeSlots" (click)="selectTime(time)" [ngClass]="{
-            'bg-gray-900 text-white border-0': selectedTime === time,
-            'text-gray-500 border-gray-300': selectedTime !== time
-          }" class="px-7 flex justify-center items-center 
-                 text-md rounded-sm transition h-10 cursor-pointer font-semibold border-2" style="border: 0.5px solid">
-            {{ time }}
+          <button *ngFor="let slot of timeSlots" (click)="selectTime(slot)"
+            [class.bg-black]="selectedTime === slot.time" [class.text-white]="selectedTime === slot.time"
+            [class.cursor-not-allowed]="!slot.free" [class.bg-gray-300]="!slot.free" [class.text-gray-500]="!slot.free"
+            class="px-7 flex justify-center items-center text-md rounded-sm transition h-10 font-semibold border-2"
+            style="border: 0.5px solid">
+            {{ slot.time }}
           </button>
+
         </div>
         <div class="flex justify-end mt-4 relative">
           <button (click)="confirm()"
@@ -62,8 +65,6 @@
           <p class="absolute mt-20 font-thin text-sm text-gray-500">*Pay at site</p>
         </div>
       </div>
-
-
     </div>
     <!-- <button class="absolute right-8 bottom-8 px-4 py-2 bg-orange-500 text-white font-semibold w-fit rounded-2xl">Select
       Time</button> -->
